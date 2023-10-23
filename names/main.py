@@ -28,6 +28,26 @@ def seleccionarFicheros(path, añoini, añofin):
                 print(f)
 
 
+def seleccionarFicheros2(path, añoini, añofin):
+    primeraVez = True
+
+    for i in range(añoini, añofin + 1):
+        try:
+            fichero = path + f"yob{i}.txt"
+            print(fichero)
+            df = cargaDataFrame(fichero)
+            if primeraVez:
+                total = df
+                primeraVez = False
+            else:
+                total = total.add(df, fill_value=0)
+
+        except Exception as e:
+            print(e)
+
+    total.sort_values(by="total", ascending=False, inplace=True)
+    print(total.head(5))
+
 if __name__ == "__main__":
     # sumarDosDF()
-    seleccionarFicheros("../practicas/Analisis datos/names/", 1990, 1995)
+    seleccionarFicheros2("../practicas/Analisis datos/names/", 2010, 2015)
