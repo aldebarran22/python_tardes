@@ -32,6 +32,9 @@ class Aleatorio(Thread):
 if __name__ == "__main__":
     m = Mensajes(10)
     a = Aleatorio(8)
-    m.start()
+    m.start()    
     a.start()
+
+    m.join()
+    a.join()
     print("Main termina ...")
