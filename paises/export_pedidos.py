@@ -10,7 +10,7 @@ def exportarPaises():
     listaPaises = list(df.pais.unique())
     listaPaises.sort()
     for pais in listaPaises:
-        if pais == 'Italia': continue
+        # if pais == 'Italia': continue
         fichero = pathDestino + f"{pais}.csv"
         df[df.pais == pais].to_csv(fichero, sep=";", index=False, decimal=",")
         # print(f"Generando fichero: {fichero}")

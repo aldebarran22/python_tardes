@@ -40,7 +40,11 @@ class TestPedidos(TestCase):
 
     def testNombreFicheros(self):
         """Comprobar si el nombre de los ficheros coincide con los nombres de los países"""
-        pass
+        list_paises_dir = list([x.split(".")[0] for x in listdir(pathDestino)])
+        list_paises_dir.sort()
+        self.assertEqual(
+            self.paisesPedidos, list_paises_dir, "Los paises son distintos"
+        )
 
     def tearDown(self):
         for f in listdir(pathDestino):
