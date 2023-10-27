@@ -29,7 +29,14 @@ class TestPedidos(TestCase):
 
     def testNumRegistros(self):
         """Comprobar si el total de pedidos coincide en los ficheros y en Pedidos"""
-        pass
+        numFilas, _ = self.df.shape
+        total = 0
+        for f in listdir(pathDestino):
+            dfAux = pd.read_csv(pathDestino + f, sep=";")
+            total += dfAux.shape[0]
+
+        if numFilas != total:
+            self.fail(msg="No coincide la suma total de las filas de los ficheros")
 
     def testNombreFicheros(self):
         """Comprobar si el nombre de los ficheros coincide con los nombres de los países"""
